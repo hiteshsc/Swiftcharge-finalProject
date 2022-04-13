@@ -14,6 +14,7 @@ import AddVehicle from "./Components/Forms/AddVehicle";
 import { useEffect, useState } from "react";
 import MyStation from "./Components/UI/MyStation";
 import Admin from "./Components/UI/Admin";
+import MyBookings from "./Components/UI/MyBookings";
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
@@ -46,6 +47,7 @@ function App() {
           path="/myStation"
           element={<MyStation {...{ user, setUser }} />}
         />
+        <Route path="mybookings" element={<MyBookings />} />
       </Routes>
     </BrowserRouter>
   );

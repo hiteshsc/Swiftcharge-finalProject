@@ -20,6 +20,7 @@ function MyNavBar({ user, setUser }) {
           </Nav>
           <Nav>
             <Nav.Link href="/addVehicle">Add Vehicle</Nav.Link>
+            <Nav.Link href="/mybookings">My Bookings</Nav.Link>
             <Nav.Link eventKey={2} href="/bookslot">
               Book Slot
             </Nav.Link>

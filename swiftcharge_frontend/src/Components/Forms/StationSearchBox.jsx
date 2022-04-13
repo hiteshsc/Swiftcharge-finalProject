@@ -15,7 +15,7 @@ function StationSearchBox({
     startTime: ceilHrs(new Date()),
     endTime: ceilHrs(moment(new Date()).add(1, "hour").toDate()),
   });
-
+  const [error, setError] = useState();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setBookingDetails((prevValue) => ({ ...prevValue, [name]: value }));
@@ -24,6 +24,12 @@ function StationSearchBox({
   const handleSubmit = async (e) => {
     e.preventDefault();
     // bookingDetails.vehicle = { id: bookingDetails.VehicleId };
+    console.log(bookingDetails);
+    if (!bookingDetails.VehicleId) {
+      setError("Please select vehicle");
+      return;
+    }
+    setError();
     setBookingDto({
       ...bookingDetails,
       vehicle: { id: bookingDetails.VehicleId },
@@ -54,6 +60,7 @@ function StationSearchBox({
         onSubmit={(e) => handleSubmit(e)}
       >
         <div className="row">
+          <div className="text-light ">{error}</div>
           <div className="form-group col-3 ">
             <select
               className="form-control"
