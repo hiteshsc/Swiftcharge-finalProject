@@ -9,13 +9,18 @@ function StationPopup({ station, setPopupInfo, bookingDto }) {
   const handleclick = async () => {
     const lockslot = { station, bookingDto };
     console.log(lockslot);
-    const { data } = await axios.post(
-      "http://localhost:8080/lockslot",
-      lockslot
-    );
-    console.log("after request");
-    console.log(data);
-    navigate("/payment", { state: data });
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8080/lockslot",
+        lockslot
+      );
+      console.log("after request");
+      console.log(data);
+      navigate("/payment", { state: data });
+    } catch (error) {
+      alert(error.response.data);
+      navigate("/bookslot");
+    }
   };
   return (
     <Popup

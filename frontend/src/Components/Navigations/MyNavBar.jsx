@@ -11,12 +11,12 @@ function MyNavBar({ user, setUser }) {
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
       <Container fluid var>
-        <Navbar.Brand href="#home">SwiftCharge</Navbar.Brand>
+        <Navbar.Brand href="/">SwiftCharge</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Nav.Link href="/mystation">My Station</Nav.Link>
+            {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
           </Nav>
           <Nav>
             <Nav.Link href="/addVehicle">Add Vehicle</Nav.Link>

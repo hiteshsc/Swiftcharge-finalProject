@@ -13,6 +13,7 @@ import Login from "./Components/Forms/Login";
 import AddVehicle from "./Components/Forms/AddVehicle";
 import { useEffect, useState } from "react";
 import MyStation from "./Components/UI/MyStation";
+import Admin from "./Components/UI/Admin";
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
@@ -26,6 +27,7 @@ function App() {
           <Route path="Signup" element={<Signup {...{ user, setUser }} />} />
           <Route path="login" element={<Login {...{ user, setUser }} />} />
           <Route path="payment" element={<Payment />} />
+          <Route path="admin" element={<Admin />} />
           <Route path="*" element={<HomeBody />} />
           <Route
             path="/addVehicle"

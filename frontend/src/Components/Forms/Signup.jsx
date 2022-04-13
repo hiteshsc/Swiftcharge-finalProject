@@ -38,9 +38,9 @@ function Signup({ user, setUser }) {
           `http://localhost:8080/newUser`,
           formValues
         );
-        setServerOtp(response.data);
         console.log(serverOtp);
         setToggle({ isSignup: false, isOtp: true });
+        setServerOtp(response.data);
       } catch (error) {
         alert(error.response.data);
       }
@@ -57,7 +57,7 @@ function Signup({ user, setUser }) {
         "secret-key"
       ).toString();
 
-      axios.post(`http://localhost:8080/newUser`, formValues);
+      axios.post(`http://localhost:8080/register`, formValues);
       alert("Registered Successfully, Please login to continue");
       navigate("/login");
     } else console.log("invalid otp");

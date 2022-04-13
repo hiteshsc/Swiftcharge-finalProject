@@ -1,6 +1,6 @@
 import aes from "crypto-js/aes";
 import { AES } from "crypto-js";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import cryptoJs from "crypto-js";
 import sha512 from "crypto-js/sha512";
@@ -20,14 +20,22 @@ const Login = ({ user, setUser }) => {
     console.log(localStorage.getItem("user"));
     try {
       const response = await axios.post("http://localhost:8080/login", data);
-      setUser(response.data);
       localStorage.setItem("user", JSON.stringify(response.data));
-      navigate("/bookslot");
+      redirect(response.data);
+      setUser(response.data);
     } catch (error) {
       setCredentialError(error.response.data);
       console.dir(error);
     }
   };
+
+  const redirect = ({ role: { id } }) => {
+    console.log(id);
+    if (id == 1) navigate("/admin");
+    else if (id == 2) navigate("/mystation");
+    else navigate("/bookslot");
+  };
+
   const css = `.invalid {
   border: 2px solid red !important;
 }

@@ -4,7 +4,8 @@ import MyMap from "../Map/MyMap";
 import { Navigate } from "react-router-dom";
 
 function SearchStation({ user, setUser }) {
-  // setUser(JSON.parse(localStorage.getItem("user")));
+  //setUser(JSON.parse(localStorage.getItem("user")));
+  const myUser = JSON.parse(localStorage.getItem("user"));
   console.log(user);
   const [viewState, setViewState] = React.useState({
     latitude: 10.9,
@@ -17,14 +18,14 @@ function SearchStation({ user, setUser }) {
 
   return (
     <div style={{ height: "100vh", widht: "100vw" }}>
-      {(!user && <Navigate to={"/login"} />) ||
-        ((!user.vehicles || user.vehicles?.length == 0) && (
+      {(!myUser && <Navigate to={"/login"} />) ||
+        ((!myUser.vehicles || myUser.vehicles?.length == 0) && (
           <Navigate to="/addVehicle" />
         ))}
 
       <StationSearchBox
         {...{
-          vehicles: user?.vehicles,
+          vehicles: myUser?.vehicles,
           viewState,
           setStations,
           bookingDto,
