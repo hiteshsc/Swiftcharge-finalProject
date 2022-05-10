@@ -36,9 +36,14 @@ function MyNavBar({ user, setUser }) {
                 <NavDropdown.Item href="/login">Log in</NavDropdown.Item>
               )}
               {user && (
-                <NavDropdown.Item href="/" onClick={logout}>
-                  Log out
-                </NavDropdown.Item>
+                <>
+                  <NavDropdown.Item disabled={true} className="fs-3">
+                    {user.name}
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="/" onClick={logout}>
+                    Log out
+                  </NavDropdown.Item>
+                </>
               )}
             </NavDropdown>
           </Nav>

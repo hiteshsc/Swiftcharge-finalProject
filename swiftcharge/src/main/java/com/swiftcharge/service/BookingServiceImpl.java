@@ -93,15 +93,16 @@ public class BookingServiceImpl implements BookingService {
 			try {
 				bookingRepository.lockSlot(bookingId, bd.getStartTime(), bd.getEndTime(), cpd.getStationId(), cpd.getId(), bd.getVehicle().getId());
 				startTimeOut(bookingId);
-				System.out.println("lock achieved " + cpd.getId());
+				log.info("lock achieved " + cpd.getId());
 				return bookingId;
 			}catch(JpaSystemException  e) {
-				System.out.println("failed to achieve lock on " + cpd.getId());
+				log.info("failed to achieve lock on " + cpd.getId());
 			}
 		}
 		throw new NoSlotAvailableException();
 	}
 
+	@Transactional
 	private void startTimeOut(String bookingId) {
 		Thread t = new Thread(()->{
 			try {
@@ -117,6 +118,7 @@ public class BookingServiceImpl implements BookingService {
 		threadMap.put(bookingId, t);
 	}
 	
+	@Transactional
 	public BookingDetails confirmBooking(String id) {
 		if(threadMap.containsKey(id)) {
 			Thread t = threadMap.get(id);

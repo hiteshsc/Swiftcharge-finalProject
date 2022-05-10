@@ -13,9 +13,10 @@ public class EmailService {
 
 	 public void sendEmailForNewRegistration(String email, int otp) {
 		SimpleMailMessage message = new SimpleMailMessage(); 
-        message.setFrom("twosoulproject@gmail.com");
+//        message.setFrom("twosoulproject@gmail.com");
+        message.setFrom("SwiftCharge");
         message.setTo(email); 
-        message.setSubject("Otp for registering on Twosouls"); 
+        message.setSubject("Otp for registering on SwiftCharge"); 
         message.setText("Otp is "+ otp);
         emailSender.send(message);
 	 }
